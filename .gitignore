@@ -1,0 +1,35 @@
+.idea/
+# TODO:
+# dist/
+node_modules/
+.yarn/
+.build/
+coverage/
+npm-debug.log
+test-results.xml
+test-report.xml
+tmp-package.json
+yarn-error.log
+TODO
+.vscode/
+*.iml
+*.DS_Store
+report.*.json
+
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+*~
+# Persistent undo
+[._]*.un~
