@@ -21,7 +21,7 @@ yarn run dev
 
 | Название | Описание                                        | Пример |
 | -------- | ----------------------------------------------- | ------ |
-| NODE_ENV | Variable to webpack to build dev or prode build |        |
+| NODE_ENV | Variable for webpack to build dev or prode build |        |
 
 ## Сборка проекта
 

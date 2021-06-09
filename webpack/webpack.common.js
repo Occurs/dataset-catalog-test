@@ -28,6 +28,7 @@ module.exports = {
   resolve: {
     alias: {
       '@features': path.join(rootDir, '/src/features'),
+      '@pages': path.join(rootDir, '/src/pages'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },

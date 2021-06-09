@@ -14,7 +14,8 @@
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {
-      "@features/*": ["features/*"]
+      "@features/*": ["features/*"],
+      "@pages/*": ["pages/*"]
     }
   },
   "include": ["./src/**/*", "./global.d.ts"],
