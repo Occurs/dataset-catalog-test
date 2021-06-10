@@ -1,15 +1,14 @@
 import React, { FC, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { useDebounce } from '@features/hooks/useDebounce';
 import { useRequest } from '@features/hooks/UseRequest';
 import TextField from '@material-ui/core/TextField';
 
 type TRequest = {
   count: number;
-  total: number;
-  items: Array<{
-    identifier: string;
-    title: string;
+  results: Array<{
+    index: string;
+    name: string;
+    url: string;
   }>;
 };
 
@@ -20,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
         marginBottom: theme.spacing(1),
         marginTop: theme.spacing(1),
         width: '100%',
+        padding: '0 12px',
       },
     },
   }),
@@ -27,20 +27,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Main: FC = () => {
   const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce(search, 300);
   const { data } = useRequest<TRequest>({
-    url: search && (() => debouncedSearch) ? 'https://archive.org/services/search/v1/scrape' : undefined,
-    params: { fields: 'title', q: search, count: '100' },
+    url: search ? 'https://www.dnd5eapi.co/api/spells' : undefined,
+    params: { name: search },
   });
 
   const classes = useStyles();
   return (
-    <div>
+    <div className={classes.root}>
       <form
-        onSubmit={() => {
+        onSubmit={(event) => {
+          event.preventDefault();
           console.log(search);
         }}
-        className={classes.root}
         noValidate
         autoComplete="off"
       >
@@ -56,16 +55,16 @@ export const Main: FC = () => {
       </form>
       {data ? (
         <p>
-          You search for: {search}, and get {data.total}
+          You search for: {search}, and get {data.count}
         </p>
       ) : (
         <p>No results</p>
       )}
       <div>
-        {data?.items.map((item) => (
-          <span key={item.identifier}>
-            <p>{item.title}</p>
-            <p>/data/{item.identifier}.csv</p>
+        {data?.results.map((item) => (
+          <span key={item.index}>
+            <p>{item.name}</p>
+            <p>{item.url}</p>
           </span>
         ))}
       </div>
