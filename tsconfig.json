@@ -15,7 +15,8 @@
     "baseUrl": "./src",
     "paths": {
       "@features/*": ["features/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@components/*": ["components/*"]
     }
   },
   "include": ["./src/**/*", "./global.d.ts"],

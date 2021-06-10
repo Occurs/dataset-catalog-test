@@ -29,6 +29,7 @@ module.exports = {
     alias: {
       '@features': path.join(rootDir, '/src/features'),
       '@pages': path.join(rootDir, '/src/pages'),
+      '@components': path.join(rootDir, '/src/components'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
