@@ -3,12 +3,14 @@ import { Switch, BrowserRouter, Route } from 'react-router-dom';
 
 import { Layout } from '@features/layout/Layout';
 import { Main } from '@pages/main/Main';
+import { Details } from '@pages/details/Details';
 
 export const AppRouter: FC = () => (
   <BrowserRouter>
     <Layout>
       <Switch>
-        <Route path={'/'} render={() => <Main />} />
+        <Route exact path={'/'} render={() => <Main />} />
+        <Route exact path={'/:id'} render={() => <Details />} />
       </Switch>
     </Layout>
   </BrowserRouter>
