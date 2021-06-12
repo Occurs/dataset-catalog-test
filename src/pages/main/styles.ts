@@ -13,12 +13,23 @@ export const useStyles = makeStyles((theme: Theme) =>
     form: {
       display: 'flex',
     },
+    select: {
+      width: '120px',
+      marginLeft: '8px',
+    },
     submit: {
-      margin: '0 0 0 4px',
+      width: '97px',
+      marginLeft: '8px',
     },
     cardsWrapper: {
       display: 'flex',
       flexDirection: 'column',
+    },
+    count: {
+      display: 'flex',
+    },
+    accentText: {
+      marginLeft: '0.3rem',
     },
   }),
 );

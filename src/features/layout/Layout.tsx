@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       height: '80px',
-      margin: '0 auto 12px auto',
+      margin: '4px auto 4px auto',
     },
     logo: {
-      height: '60px',
-      width: '60px',
+      height: '68px',
+      width: '68px',
     },
     root: {
       display: 'flex',
