@@ -11,7 +11,7 @@ import { prepareArrayToPagination } from '@utils/prepareArrayToPagination';
 import { TRequest, TResult, TViewData } from './types';
 import { useStyles } from './styles';
 
-const paginationLength = 7;
+const paginationLength = 6;
 
 export const Main: FC = () => {
   const [search, setSearch] = useState('');
@@ -24,7 +24,7 @@ export const Main: FC = () => {
   });
 
   useEffect(() => {
-    if (data && data.count > paginationLength) {
+    if (data) {
       const totalCount = Math.ceil(data.results.length / paginationLength);
       const res = prepareArrayToPagination(data.results, totalCount, paginationLength);
       setViewData(res);
@@ -51,7 +51,7 @@ export const Main: FC = () => {
       >
         <TextField
           onChange={(e) => setSearch(e.target.value)}
-          label="Spells Search..."
+          label="Search..."
           variant="outlined"
           fullWidth
           InputLabelProps={{
@@ -63,29 +63,24 @@ export const Main: FC = () => {
         </Button>
       </form>
       {data ? (
-        <p>
-          You search for: {search}, and get {data.count}
-        </p>
-      ) : (
-        <p>No results</p>
-      )}
-
-      {data && data.count > paginationLength ? (
         <>
+          <p>
+            You search for: {search}, and get {data.count}
+          </p>
           <div className={classes.cardsWrapper}>
             {viewData !== null &&
               viewData[pagination.page - 1].map(({ index, name, url }: TResult) => (
                 <SpellCard key={index} name={name} url={url} />
               ))}
           </div>
-          <Pagination totalPageCount={pagination.totalPageCount} page={pagination.page} setPage={setPage} />
+          {pagination.totalPageCount > 1 && (
+            <Pagination totalPageCount={pagination.totalPageCount} page={pagination.page} setPage={setPage} />
+          )}
         </>
       ) : (
-        <div className={classes.cardsWrapper}>
-          {data?.results.map(({ index, name, url }) => (
-            <SpellCard key={index} name={name} url={url} />
-          ))}
-        </div>
+        <>
+          <p>No results</p>
+        </>
       )}
     </div>
   );
