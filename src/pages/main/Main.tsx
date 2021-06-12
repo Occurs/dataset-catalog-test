@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useRequest } from '@hooks/UseRequest';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -9,41 +8,8 @@ import { Pagination } from '@components/pagination/Pagination';
 
 import { prepareArrayToPagination } from '@utils/prepareArrayToPagination';
 
-type TRequest = {
-  count: number;
-  results: Array<TResult>;
-};
-
-type TResult = {
-  index: string;
-  name: string;
-  url: string;
-};
-
-type TViewData = Array<Array<TResult>> | null;
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        marginBottom: theme.spacing(1),
-        marginTop: theme.spacing(1),
-        width: '100%',
-        padding: '0 12px',
-      },
-    },
-    form: {
-      display: 'flex',
-    },
-    submit: {
-      margin: '0 0 0 4px',
-    },
-    cardsWrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-  }),
-);
+import { TRequest, TResult, TViewData } from './types';
+import { useStyles } from './styles';
 
 const paginationLength = 7;
 
@@ -66,7 +32,7 @@ export const Main: FC = () => {
     }
   }, [data]);
 
-  function setPage(page: number) {
+  function setPage(page: number): void {
     const updatePage = { ...pagination, page };
     setPagination(updatePage);
   }

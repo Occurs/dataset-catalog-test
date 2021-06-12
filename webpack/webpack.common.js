@@ -23,6 +23,12 @@ module.exports = {
           loader: 'ts-loader',
         },
       },
+      {
+        test: /\.(jpg|png)$/,
+        use: {
+          loader: 'url-loader',
+        },
+      },
     ],
   },
   resolve: {
@@ -32,6 +38,7 @@ module.exports = {
       '@components': path.join(rootDir, '/src/components'),
       '@hooks': path.join(rootDir, '/src/hooks'),
       '@utils': path.join(rootDir, '/src/utils'),
+      '@assets': path.join(rootDir, '/src/assets'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
