@@ -9,7 +9,10 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      minWidth: 275,
+      width: '100%',
+      marginBottom: '8px',
+      display: 'flex',
+      justifyContent: 'space-between',
     },
     bullet: {
       display: 'inline-block',
@@ -21,6 +24,9 @@ const useStyles = makeStyles(() =>
     },
     pos: {
       marginBottom: 12,
+    },
+    more: {
+      height: '100%',
     },
   }),
 );
@@ -43,7 +49,9 @@ export const SpellCard: FC<LayoutProps> = ({ name, url }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button className={classes.more} size="small">
+          Learn More
+        </Button>
       </CardActions>
     </Card>
   );

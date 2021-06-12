@@ -30,6 +30,8 @@ module.exports = {
       '@features': path.join(rootDir, '/src/features'),
       '@pages': path.join(rootDir, '/src/pages'),
       '@components': path.join(rootDir, '/src/components'),
+      '@hooks': path.join(rootDir, '/src/hooks'),
+      '@utils': path.join(rootDir, '/src/utils'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },

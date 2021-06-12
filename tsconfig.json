@@ -16,7 +16,9 @@
     "paths": {
       "@features/*": ["features/*"],
       "@pages/*": ["pages/*"],
-      "@components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": ["./src/**/*", "./global.d.ts"],
