@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 import { Link as RLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { useSpellDetails } from './api';
 import Typography from '@material-ui/core/Typography';
 
+import { routes } from '@features/router/routes';
+
+import { useSpellDetails } from './api';
 import { useStyles } from './styles';
 
 type ParamTypes = {
@@ -30,7 +32,7 @@ export const Details: FC = () => {
 
   return (
     <div className={classes.root}>
-      <RLink className={classes.link} to="/">
+      <RLink className={classes.link} to={routes.main}>
         <Typography component="span" color="primary">
           Main page
         </Typography>

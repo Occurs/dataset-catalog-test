@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { routes } from '@features/router/routes';
 
 import Logo from '@assets/logo.png';
 
@@ -49,7 +50,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
     <>
       <header className={classes.header}>
         <div className={classes.headerContent}>
-          <Link to="/">
+          <Link to={routes.main}>
             <img alt="logo" src={Logo} className={classes.logo} />
           </Link>
           <Typography variant="h4" component="h4">

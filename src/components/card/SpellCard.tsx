@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { generatePath } from 'react-router';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { routes } from '@features/router/routes';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -55,7 +57,7 @@ export const SpellCard: FC<LayoutProps> = ({ name, url, id }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link className={classes.link} to={`/${id}`}>
+        <Link className={classes.link} to={generatePath(routes.details, { id })}>
           <Button className={classes.more} size="small">
             Learn More
           </Button>
