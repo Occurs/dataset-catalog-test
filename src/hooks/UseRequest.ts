@@ -1,49 +1,6 @@
-import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import useSWR, { SWRResponse } from 'swr';
+import { getFetcher } from '@features/fetcher/fetcher';
 
-export type GetRequest = AxiosRequestConfig | null;
-
-interface Return<Data, Error>
-  extends Pick<
-    SWRResponse<AxiosResponse<Data>, AxiosError<Error>>,
-    'isValidating' | 'revalidate' | 'error' | 'mutate'
-  > {
-  data: Data | undefined;
-  response: AxiosResponse<Data> | undefined;
-}
-
-export interface Config<Data = unknown, Error = unknown>
-  extends Omit<SWRConfiguration<AxiosResponse<Data>, AxiosError<Error>>, 'initialData'> {
-  initialData?: Data;
-}
-
-export function useRequest<Data = unknown, Error = unknown>(
-  request: GetRequest,
-  { initialData, ...config }: Config<Data, Error> = {},
-): Return<Data, Error> {
-  const {
-    data: response,
-    error,
-    isValidating,
-    revalidate,
-    mutate,
-  } = useSWR<AxiosResponse<Data>, AxiosError<Error>>(request && JSON.stringify(request), () => axios(request!), {
-    ...config,
-    initialData: initialData && {
-      status: 200,
-      statusText: 'InitialData',
-      config: request!,
-      headers: {},
-      data: initialData,
-    },
-  });
-
-  return {
-    data: response && response.data,
-    response,
-    error,
-    isValidating,
-    revalidate,
-    mutate,
-  };
+export function useRequest<R, E = Error>(api: string): SWRResponse<R, E> {
+  return useSWR<R, E>(api, getFetcher);
 }

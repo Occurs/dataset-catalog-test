@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from 'react';
-import { useRequest } from '@hooks/UseRequest';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -13,6 +12,7 @@ import { prepareArrayToPagination } from '@utils/prepareArrayToPagination';
 import { ascSort, descSort } from '@utils/spellSort';
 
 import { TRequest, TResult, TViewData } from './types';
+import { getSpells } from './api';
 import { useStyles } from './styles';
 
 const paginationLength = 6;
@@ -21,19 +21,27 @@ export const Main: FC = () => {
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
   const [order, setOrder] = useState('asc');
+  const [isLoading, setLoading] = useState(false);
+  const [data, setData] = useState<TRequest | undefined>(undefined);
   const [viewData, setViewData] = useState<TViewData>(null);
   const [pagination, setPagination] = useState({ page: 1, totalPageCount: 0 });
-  const { data } = useRequest<TRequest>({
-    url: query ? 'https://www.dnd5eapi.co/api/spells' : undefined,
-    params: { name: query },
-  });
 
   useEffect(() => {
-    if (data) {
-      setOrder('asc');
-      updateData(data);
+    async function fetchSpells() {
+      setLoading(true);
+      try {
+        const data = await getSpells(query);
+        setData(data);
+        setOrder('asc');
+        updateData(data);
+      } finally {
+        setLoading(false);
+      }
     }
-  }, [data]);
+    if (query) {
+      fetchSpells();
+    }
+  }, [query]);
 
   useEffect(() => {
     if (data) {
@@ -94,15 +102,20 @@ export const Main: FC = () => {
           </Button>
         </div>
       </form>
-      {data ? (
+      {isLoading && (
+        <Typography component="span" color="primary">
+          Loading
+        </Typography>
+      )}
+      {data && !isLoading && (
         <>
           <Typography className={classes.count} color="textSecondary">
             You search for:{' '}
-            <Typography className={classes.accentText} color="primary">
+            <Typography component="span" className={classes.accentText} color="primary">
               {search}
             </Typography>
             , and find
-            <Typography className={classes.accentText} color="primary">
+            <Typography component="span" className={classes.accentText} color="primary">
               {data.count}
             </Typography>
           </Typography>
@@ -116,9 +129,8 @@ export const Main: FC = () => {
             <Pagination totalPageCount={pagination.totalPageCount} page={pagination.page} setPage={setPage} />
           )}
         </>
-      ) : (
-        <Typography color="textSecondary">No results</Typography>
       )}
+      {!data && !isLoading && <Typography color="textSecondary">No results</Typography>}
     </div>
   );
 };

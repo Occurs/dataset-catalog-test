@@ -10,5 +10,8 @@ export const useStyles = makeStyles((theme: Theme) =>
         padding: '0 12px',
       },
     },
+    link: {
+      color: theme.palette.primary.main,
+    },
   }),
 );
