@@ -3,13 +3,13 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
-type IPagination = {
+type TPagination = {
   totalPageCount: number;
   page: number;
   setPage: (page: number) => void;
 };
 
-export const Pagination = ({ totalPageCount, page, setPage }: IPagination) => {
+export const Pagination = ({ totalPageCount, page, setPage }: TPagination): JSX.Element => {
   const onPageChangeHandler = (page: number) => () => {
     setPage(page);
   };

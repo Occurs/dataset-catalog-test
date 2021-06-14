@@ -4,6 +4,16 @@ module.exports = (api) => {
   api.cache.using(() => mode);
 
   return {
-    presets: ['@babel/preset-react'],
+    presets: [
+      ['@babel/preset-env',
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      '@babel/preset-react',
+      '@babel/preset-typescript',
+    ],
   };
 };
