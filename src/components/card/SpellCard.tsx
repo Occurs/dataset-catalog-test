@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -28,15 +29,20 @@ const useStyles = makeStyles(() =>
     more: {
       height: '100%',
     },
+    link: {
+      height: '100%',
+      textDecoration: 'none',
+    },
   }),
 );
 
 type LayoutProps = {
   name: string;
   url: string;
+  id: string;
 };
 
-export const SpellCard: FC<LayoutProps> = ({ name, url }) => {
+export const SpellCard: FC<LayoutProps> = ({ name, url, id }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -49,9 +55,11 @@ export const SpellCard: FC<LayoutProps> = ({ name, url }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button className={classes.more} size="small">
-          Learn More
-        </Button>
+        <Link className={classes.link} to={`/${id}`}>
+          <Button className={classes.more} size="small">
+            Learn More
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

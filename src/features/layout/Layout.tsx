@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -48,7 +49,9 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
     <>
       <header className={classes.header}>
         <div className={classes.headerContent}>
-          <img alt="logo" src={Logo} className={classes.logo} />
+          <Link to="/">
+            <img alt="logo" src={Logo} className={classes.logo} />
+          </Link>
           <Typography variant="h4" component="h4">
             D&#38;D Spells
           </Typography>

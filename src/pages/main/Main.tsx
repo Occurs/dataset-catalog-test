@@ -109,7 +109,7 @@ export const Main: FC = () => {
           <div className={classes.cardsWrapper}>
             {viewData !== null &&
               viewData[pagination.page - 1]?.map(({ index, name, url }: TResult) => (
-                <SpellCard key={index} name={name} url={url} />
+                <SpellCard key={index} id={index} name={name} url={url} />
               ))}
           </div>
           {pagination.totalPageCount > 1 && (
