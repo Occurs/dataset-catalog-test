@@ -17,6 +17,7 @@ npm install --global yarn
 To start the project you need Node and Yarn
 
 ```bash
+yarn install
 yarn run dev
 ```
 
