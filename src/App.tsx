@@ -13,7 +13,7 @@ const darkTheme = createMuiTheme({
   },
 });
 
-export const App = () => {
+export const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <ThemeProvider theme={darkTheme}>

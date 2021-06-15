@@ -27,7 +27,7 @@ export const Main: FC = () => {
   const [pagination, setPagination] = useState({ page: 1, totalPageCount: 0 });
 
   useEffect(() => {
-    async function fetchSpells() {
+    async function fetchSpells(): Promise<void> {
       setLoading(true);
       try {
         const data = await getSpells(query);
